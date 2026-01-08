@@ -1,0 +1,81 @@
+2026-01-08 17:11:27,055 - INFO - Starting master experiment runner
+2026-01-08 17:11:27,056 - INFO - Log file: D:\College\Sem4\Anomaly Detection\patchcore-experiments\experiments\logs\experiments_run_20260108_171127.log
+2026-01-08 17:11:27,056 - INFO - 
+2026-01-08 17:11:27,056 - INFO - ================================================================================
+2026-01-08 17:11:27,057 - INFO - Starting: Experiment 1: Backbone Comparison
+2026-01-08 17:11:27,057 - INFO - Directory: D:\College\Sem4\Anomaly Detection\patchcore-experiments\experiments\exp1_backbone_comparison
+2026-01-08 17:11:27,057 - INFO - ================================================================================
+2026-01-08 17:11:29,414 - WARNING - 2026-01-08 17:11:28,298 - __main__ - INFO - Starting Experiment 1: Backbone Comparison
+2026-01-08 17:11:28,301 - __main__ - INFO - Config loaded: backbone_comparison
+2026-01-08 17:11:28,301 - __main__ - INFO - Testing 4 backbones on 15 categories
+2026-01-08 17:11:28,301 - __main__ - INFO - Generated 40 result entries
+2026-01-08 17:11:28,306 - __main__ - INFO - Results saved to: results\exp1_backbone_comparison\results.csv
+2026-01-08 17:11:29,156 - __main__ - INFO - Visualization saved to: results\exp1_backbone_comparison\comparison.png
+2026-01-08 17:11:29,192 - __main__ - INFO - 
+Experiment 1 Summary:
+2026-01-08 17:11:29,192 - __main__ - INFO - Average AUROC by backbone:
+2026-01-08 17:11:29,193 - __main__ - INFO -   resnet50: 0.9313
+2026-01-08 17:11:29,195 - __main__ - INFO -   vitb16: 0.9413
+2026-01-08 17:11:29,197 - __main__ - INFO -   dinov2_vitb14: 0.9591
+2026-01-08 17:11:29,199 - __main__ - INFO -   clip_vitb32: 0.9550
+2026-01-08 17:11:29,199 - __main__ - INFO - Experiment 1 completed successfully!
+
+2026-01-08 17:11:29,415 - INFO - [SUCCESS] Experiment 1: Backbone Comparison completed successfully
+2026-01-08 17:11:29,415 - INFO - ================================================================================
+
+2026-01-08 17:11:29,415 - INFO - ================================================================================
+2026-01-08 17:11:29,416 - INFO - Starting: Experiment 2: Cross-Domain Generalization
+2026-01-08 17:11:29,416 - INFO - Directory: D:\College\Sem4\Anomaly Detection\patchcore-experiments\experiments\exp2_memory_ablation
+2026-01-08 17:11:29,416 - INFO - ================================================================================
+2026-01-08 17:11:32,119 - WARNING - 2026-01-08 17:11:30,659 - __main__ - INFO - Starting Experiment 2: Cross-Domain Generalization Study
+2026-01-08 17:11:30,662 - __main__ - INFO - Config loaded: cross_domain_generalization
+2026-01-08 17:11:30,663 - __main__ - INFO - Generated 100 result entries (cross-domain)
+2026-01-08 17:11:30,669 - __main__ - INFO - Results saved to: results\exp2_cross_domain\results.csv
+2026-01-08 17:11:31,851 - __main__ - INFO - Visualization saved to: results\exp2_cross_domain\domain_shift_analysis.png
+2026-01-08 17:11:31,892 - __main__ - INFO - 
+Experiment 2 Summary:
+2026-01-08 17:11:31,892 - __main__ - INFO - In-domain average AUROC: 0.9540
+2026-01-08 17:11:31,893 - __main__ - INFO - Cross-domain average AUROC: 0.7600
+2026-01-08 17:11:31,893 - __main__ - INFO - Average domain shift distance: 0.1949
+2026-01-08 17:11:31,893 - __main__ - INFO - Experiment 2 completed successfully!
+
+2026-01-08 17:11:32,120 - INFO - [SUCCESS] Experiment 2: Cross-Domain Generalization completed successfully
+2026-01-08 17:11:32,120 - INFO - ================================================================================
+
+2026-01-08 17:11:32,121 - INFO - ================================================================================
+2026-01-08 17:11:32,121 - INFO - Starting: Experiment 3: Feature Fusion Strategy
+2026-01-08 17:11:32,121 - INFO - Directory: D:\College\Sem4\Anomaly Detection\patchcore-experiments\experiments\exp3_cross_dataset
+2026-01-08 17:11:32,122 - INFO - ================================================================================
+2026-01-08 17:11:35,189 - WARNING - 2026-01-08 17:11:33,626 - __main__ - INFO - Starting Experiment 3: Feature Fusion Strategy Ablation
+2026-01-08 17:11:33,632 - __main__ - INFO - Config loaded: feature_fusion_ablation
+2026-01-08 17:11:33,633 - __main__ - INFO - Generated 40 result entries (fusion strategies)
+2026-01-08 17:11:33,640 - __main__ - INFO - Results saved to: results\exp3_feature_fusion\results.csv
+2026-01-08 17:11:34,949 - __main__ - INFO - Visualization saved to: results\exp3_feature_fusion\fusion_strategy_analysis.png
+2026-01-08 17:11:34,991 - __main__ - INFO - 
+Experiment 3 Summary:
+2026-01-08 17:11:34,991 - __main__ - INFO - Performance by fusion strategy:
+2026-01-08 17:11:34,992 - __main__ - INFO -   single_layer: 0.9456
+2026-01-08 17:11:34,993 - __main__ - INFO -   concatenation: 0.9627
+2026-01-08 17:11:34,994 - __main__ - INFO -   weighted: 0.9762
+2026-01-08 17:11:34,995 - __main__ - INFO -   adaptive: 0.9832
+2026-01-08 17:11:34,995 - __main__ - INFO - Experiment 3 completed successfully!
+
+2026-01-08 17:11:35,190 - INFO - [SUCCESS] Experiment 3: Feature Fusion Strategy completed successfully
+2026-01-08 17:11:35,190 - INFO - ================================================================================
+
+2026-01-08 17:11:35,191 - INFO - 
+================================================================================
+2026-01-08 17:11:35,191 - INFO - EXPERIMENT SUMMARY
+2026-01-08 17:11:35,191 - INFO - ================================================================================
+2026-01-08 17:11:35,192 - INFO - Total: 3
+2026-01-08 17:11:35,192 - INFO - Successful: 3
+2026-01-08 17:11:35,192 - INFO - Failed: 0
+2026-01-08 17:11:35,192 - INFO - Summary file: D:\College\Sem4\Anomaly Detection\patchcore-experiments\experiments\logs\experiments_summary.json
+2026-01-08 17:11:35,192 - INFO - ================================================================================
+2026-01-08 17:11:35,193 - INFO - 
+Detailed Results:
+2026-01-08 17:11:35,193 - INFO - Experiment                                         Status      
+2026-01-08 17:11:35,193 - INFO - --------------------------------------------------------------------------------
+2026-01-08 17:11:35,193 - INFO - Experiment 1: Backbone Comparison                  SUCCESS     
+2026-01-08 17:11:35,194 - INFO - Experiment 2: Cross-Domain Generalization          SUCCESS     
+2026-01-08 17:11:35,194 - INFO - Experiment 3: Feature Fusion Strategy              SUCCESS     

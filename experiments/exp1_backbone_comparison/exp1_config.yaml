@@ -1,0 +1,52 @@
+# Experiment 1: CLIP / Vision Transformer Embeddings
+# Configuration for backbone comparison experiments
+
+experiment:
+  name: "backbone_comparison"
+  description: "Compare different backbone architectures for anomaly detection"
+  backbones:
+    - "resnet50"           # CNN baseline
+    - "vitb16"             # Vision Transformer
+    - "dinov2_vitb14"      # DINOv2 self-supervised
+    - "clip_vitb32"        # CLIP visual encoder
+  categories:
+    - "bottle"
+    - "cable"
+    - "capsule"
+    - "carpet"
+    - "grid"
+    - "hazelnut"
+    - "leather"
+    - "metal_nut"
+    - "pill"
+    - "screw"
+    - "tile"
+    - "toothbrush"
+    - "transistor"
+    - "wood"
+    - "zipper"
+
+backbone_config:
+  pretrained: true
+  feature_layers:
+    - "layer3"    # For ResNet: layer3 features
+    - "layer4"    # For ResNet: layer4 features
+
+data_config:
+  data_path: "../../data/mvtec_ad"  # Path to MVTec AD dataset
+  image_size: 224
+  batch_size: 32
+  num_workers: 4
+  normalize: true
+
+memory_config:
+  method: "knn"          # Options: 'knn', 'pca', 'kmeans'
+  n_neighbors: 5         # For KNN method
+  n_components: 256      # For PCA/KMeans
+
+output_path: "./results/exp1_backbone_comparison"
+
+# Training / Evaluation params
+device: "cuda"
+seed: 42
+verbose: true
