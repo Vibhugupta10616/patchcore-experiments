@@ -170,7 +170,3 @@ def create_dataloaders(
     )
     
     return train_loader, test_loader
-        dataset_path=root,
-        split=split,
-        class_name=class_name
-    )

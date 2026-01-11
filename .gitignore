@@ -1,3 +1,24 @@
 .idea/
 __pycache__/
 LabletAnomaly.egg-info/
+.env
+.env.local
+*.env
+.env
+.env.local
+*.env
+
+# --- Experiment datasets (do not commit) ---
+experiments/data/
+experiments/data/**
+
+# --- Experiment outputs (generated) ---
+experiments/logs/
+experiments/logs/**
+experiments/results/
+experiments/results/**
+experiments/**/logs/
+experiments/**/results/
+
+# --- Local virtual environments ---
+radl/

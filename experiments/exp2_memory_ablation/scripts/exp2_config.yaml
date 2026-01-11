@@ -1,0 +1,52 @@
+# Experiment 2: Adaptive Coreset Sampling (Variance-Weighted K-Center)
+# Configuration for memory ablation study
+
+experiment:
+  name: "adaptive_coreset_sampling"
+  description: "Compare variance-weighted k-center vs random k-center coreset sampling"
+  
+  # Coreset methods to compare
+  coreset_methods:
+    - "random_knn"              # Baseline: random sampling
+    - "variance_weighted_knn"   # Proposed: variance-weighted k-center
+  
+  # Coreset sizes to test (as fraction of total patches)
+  coreset_sizes:
+    - 0.005   # 0.5%
+    - 0.01    # 1%
+    - 0.05    # 5%
+  
+  # Categories for evaluation
+  categories:
+    - "bottle"
+    - "cable"
+    - "hazelnut"
+    - "leather"
+    - "screw"
+    - "carpet"
+    - "grid"
+    - "wood"
+
+backbone_config:
+  name: "resnet50"
+  pretrained: true
+  feature_layers:
+    - "layer3"
+    - "layer4"
+
+data_config:
+  data_path: "../../data/mvtec_ad"  # Path to MVTec AD dataset (from scripts folder)
+  image_size: 224
+  batch_size: 32
+  num_workers: 4
+
+memory_config:
+  method: "knn"          # Memory bank method
+  n_neighbors: 5         # For KNN-based anomaly detection
+  n_components: 256      # For PCA compression (optional)
+
+output_path: "../results"  # Output directory (from scripts folder)
+
+device: "cuda"
+seed: 42
+verbose: true

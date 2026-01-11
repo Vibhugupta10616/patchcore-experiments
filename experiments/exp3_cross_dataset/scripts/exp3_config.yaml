@@ -1,0 +1,28 @@
+## Experiment 3: FAISS-Based Memory Compression & ANN Search
+## Configuration for comparing FAISS IVF-PQ vs exact k-NN on real MVTec data
+
+experiment:
+  name: "faiss_ann_optimization"
+  search_methods: ["exact_knn", "faiss_ivfpq"]
+  categories:
+    - "bottle"
+    - "cable"
+    - "hazelnut"
+    - "leather"
+    - "screw"
+  faiss_config:
+    pq_bits: [4, 8, 16]
+    nprobe: [1, 4, 8, 16]
+    n_clusters: 100
+    m: 8
+
+data_config:
+  data_path: "../data/mvtec_ad"   # Not used directly by script; for documentation
+  image_size: 224
+  batch_size: 32
+  num_workers: 0
+
+output_path: "../results"         # Not used directly; results saved under experiments/results/exp3_faiss_ann
+
+device: "auto"
+seed: 42
