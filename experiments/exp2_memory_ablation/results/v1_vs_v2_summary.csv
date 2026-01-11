@@ -1,0 +1,6 @@
+Category,Weight Factor,V1 Avg AUROC,V2 Avg AUROC,Improvement %,Benefit Level
+bottle,1.5,0.9258,0.9443,1.85,Moderate
+cable,1.32,0.9287,0.9380,0.93,Minimal
+hazelnut,1.375,0.9211,0.9349,1.38,Minimal
+leather,1.575,0.9301,0.9534,2.33,High
+screw,1.55,0.9298,0.9484,1.86,Moderate

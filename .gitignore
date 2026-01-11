@@ -20,5 +20,13 @@ experiments/results/**
 experiments/**/logs/
 experiments/**/results/
 
+# --- Keep experiment results ---
+!experiments/exp1_backbone_comparison/results/
+!experiments/exp1_backbone_comparison/results/**
+!experiments/exp2_memory_ablation/results/
+!experiments/exp2_memory_ablation/results/**
+!experiments/exp3_cross_dataset/results/
+!experiments/exp3_cross_dataset/results/**
+
 # --- Local virtual environments ---
 radl/
