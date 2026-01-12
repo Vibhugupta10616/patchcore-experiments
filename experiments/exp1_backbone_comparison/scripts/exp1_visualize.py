@@ -52,10 +52,6 @@ def create_comparison_visualizations(
         ax1.set_ylabel('Average Image AUROC', fontsize=11)
         ax1.set_xlabel('Backbones', fontsize=11)
         ax1.set_ylim([0.88, 1.02])
-        ax1.axhline(y=0.95, color='r', linestyle='--', alpha=0.3, label='Baseline (0.95)')
-        # Clear any existing legend and add only baseline
-        ax1.get_legend_handles_labels()
-        ax1.legend(['Baseline (0.95)'], loc='upper right')
         ax1.grid(axis='y', alpha=0.3)
         plt.setp(ax1.xaxis.get_majorticklabels(), rotation=0)
     
