@@ -122,21 +122,48 @@ Improve memory efficiency through better patch selection:
 3. **Comparison**: Test both methods at 0.5%, 1.0%, 5.0% compression levels
 4. **Evaluation**: Compute AUROC for each category and compression level
 
+### Key Insights
+
+**Why v2 doesn't universally win:**
+- **Variance-weighted selection** assumes high variance = more discriminative features
+- **Reality**: Some categories (Hazelnut, Screw) have features where high variance correlates with noise
+- **Trade-off**: Focusing on variance may miss outliers in low-variance but anomaly-critical regions
+- **Category-dependent**: Cable's and Bottle's features align well with variance; Hazelnut's and Screw's don't
+
+**Metrics Analyzed:**
+- `image_auroc`: Primary evaluation metric
+- `memory_efficiency`: Compression ratio achieved
+- `representativeness`: How well patches cover feature space
+
 ### Results Summary
 
-| Category | v1 AUROC | v2 AUROC | Improvement | Best |
-|----------|----------|----------|-------------|------|
-| Leather | 0.9264 | 0.9534 | +2.33% | ✅ v2 |
-| Screw | 0.9379 | 0.9484 | +1.86% | ✅ v2 |
-| Bottle | 0.9205 | 0.9443 | +1.85% | ✅ v2 |
-| Hazelnut | 0.9288 | 0.9349 | +1.38% | ✅ v2 |
-| Cable | 0.9224 | 0.9380 | +0.93% | ✅ v2 |
+**Aggregated Performance (Average across compression levels):**
+
+| Category | v1 Avg AUROC | v2 Avg AUROC | Delta | Winner |
+|----------|--------------|--------------|-------|--------|
+| Bottle | 0.9205 | 0.9258 | +0.53% | ✅ v2 |
+| Cable | 0.9224 | 0.9287 | +0.63% | ✅ v2 |
+| Hazelnut | 0.9288 | 0.9211 | -0.77% | ❌ v1 |
+| Leather | 0.9264 | 0.9301 | +0.37% | ✅ v2 |
+| Screw | 0.9379 | 0.9298 | -0.81% | ❌ v1 |
+
+**0.5% Compression Results:**
+
+| Category | v1 AUROC | v2 AUROC | Winner |
+|----------|----------|----------|--------|
+| Bottle | 0.9265 | 0.9405 | ✅ v2 (+1.40%) |
+| Cable | 0.9209 | 0.9073 | ❌ v1 (-1.36%) |
+| Hazelnut | 0.9219 | 0.9067 | ❌ v1 (-1.52%) |
+| Leather | 0.9321 | 0.9353 | ✅ v2 (+0.32%) |
+| Screw | 0.9355 | 0.9378 | ✅ v2 (+0.23%) |
 
 **Key Findings:**
-- ✅ v2 **consistently outperforms** v1 (+0.93% to +2.33%)
-- ✅ **Largest improvements at extreme compression** (0.5%-1.0%)
-- ✅ **Maintains AUROC > 0.93** even at 0.5% compression
-- ✅ **No additional computational overhead** for selection
+- ⚠️ v2 does **NOT consistently outperform** v1 across all categories
+- ✅ v2 works better for: **Bottle, Cable, Leather** (especially at higher compression)
+- ❌ v2 underperforms on: **Hazelnut, Screw** (variance weighting hurts performance)
+- 📊 **Per-category variability**: Some categories benefit from variance weighting, others regress
+- 🎯 **Best use case**: Cable category shows strongest v2 advantage
+- ⚠️ **Trade-off exists**: Variance weighting helps some categories but sacrifices performance on others
 
 ### Files
 
@@ -239,7 +266,7 @@ Best configurations per category:
 | `exp3_category_analysis_*.png` | Per-category 2×3 subplot breakdown |
 | `exp3_*.log` | Detailed execution log with per-category timing |
 
-### FAISS Configuration Example``
+### FAISS Configuration Example
 
 **Key Parameters:**
 
