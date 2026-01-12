@@ -1,9 +1,10 @@
 # Ignore everything
 *
 
-# Keep only experiments folder
+# Keep only experiments folder and root README files
 !experiments/
 !experiments/**
+!README*.md
 
 # But ignore data and common folders inside experiments
 experiments/data/
