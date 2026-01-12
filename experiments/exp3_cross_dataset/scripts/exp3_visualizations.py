@@ -46,8 +46,8 @@ def create_exp3_visualizations(results_df: pd.DataFrame, output_dir: Path, times
         
         x = np.arange(len(categories))
         width = 0.35
-        bars1 = ax1.bar(x - width/2, baseline_aurocs, width, label='Exact k-NN', color='steelblue', alpha=0.8)
-        bars2 = ax1.bar(x + width/2, best_faiss_aurocs, width, label='Best FAISS', color='coral', alpha=0.8)
+        bars1 = ax1.bar(x - width/2, baseline_aurocs, width, label='Exact k-NN', color='#1f77b4', alpha=0.8)
+        bars2 = ax1.bar(x + width/2, best_faiss_aurocs, width, label='Best FAISS', color='#ff7f0e', alpha=0.8)
         
         # Add value labels on bars
         for bars in [bars1, bars2]:

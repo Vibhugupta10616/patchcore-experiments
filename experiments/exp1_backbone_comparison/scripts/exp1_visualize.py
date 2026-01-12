@@ -39,11 +39,19 @@ def create_comparison_visualizations(
     mvtec_df = df[df['dataset'] == 'MVTec AD']
     if len(mvtec_df) > 0:
         mvtec_by_backbone = mvtec_df.groupby('backbone')['image_auroc'].mean().sort_values(ascending=False)
-        mvtec_by_backbone.plot(ax=ax1, kind='bar', color=['#1f77b4', '#ff7f0e', '#2ca02c'], legend=False)
+        bars = ax1.bar(range(len(mvtec_by_backbone)), mvtec_by_backbone.values, 
+                       width=0.4, color=['#1f77b4', '#ff7f0e', '#2ca02c'])
+        # Add value labels on bars
+        for bar in bars:
+            height = bar.get_height()
+            ax1.text(bar.get_x() + bar.get_width()/2., height,
+                    f'{height:.4f}', ha='center', va='bottom', fontsize=9, fontweight='bold')
+        ax1.set_xticks(range(len(mvtec_by_backbone)))
+        ax1.set_xticklabels(mvtec_by_backbone.index, rotation=0)
         ax1.set_title('In-Domain Performance: MVTec AD by Backbone', fontsize=12, fontweight='bold')
-        ax1.set_ylabel('Average Image AUROC')
+        ax1.set_ylabel('Average Image AUROC', fontsize=11)
         ax1.set_xlabel('Backbones', fontsize=11)
-        ax1.set_ylim([0.8, 1.0])
+        ax1.set_ylim([0.88, 1.02])
         ax1.axhline(y=0.95, color='r', linestyle='--', alpha=0.3, label='Baseline (0.95)')
         # Clear any existing legend and add only baseline
         ax1.get_legend_handles_labels()
@@ -56,11 +64,19 @@ def create_comparison_visualizations(
     visa_df = df[df['dataset'] == 'VisA']
     if len(visa_df) > 0:
         visa_by_backbone = visa_df.groupby('backbone')['image_auroc'].mean().sort_values(ascending=False)
-        visa_by_backbone.plot(ax=ax2, kind='bar', color=['#1f77b4', '#ff7f0e', '#2ca02c'])
+        bars = ax2.bar(range(len(visa_by_backbone)), visa_by_backbone.values,
+                       width=0.4, color=['#1f77b4', '#ff7f0e', '#2ca02c'])
+        # Add value labels on bars
+        for bar in bars:
+            height = bar.get_height()
+            ax2.text(bar.get_x() + bar.get_width()/2., height,
+                    f'{height:.4f}', ha='center', va='bottom', fontsize=9, fontweight='bold')
+        ax2.set_xticks(range(len(visa_by_backbone)))
+        ax2.set_xticklabels(visa_by_backbone.index, rotation=0)
         ax2.set_title('Cross-Domain Performance: VisA Zero-Shot by Backbone', fontsize=12, fontweight='bold')
-        ax2.set_ylabel('Average Image AUROC')
+        ax2.set_ylabel('Average Image AUROC', fontsize=11)
         ax2.set_xlabel('Backbones', fontsize=11)
-        ax2.set_ylim([0.7, 1.0])
+        ax2.set_ylim([0.65, 1.02])
         ax2.grid(axis='y', alpha=0.3)
         plt.setp(ax2.xaxis.get_majorticklabels(), rotation=0)
     
@@ -68,14 +84,24 @@ def create_comparison_visualizations(
     ax3 = fig.add_subplot(gs[1, 0])
     mvtec_by_cat = mvtec_df.pivot_table(values='image_auroc', index='category', columns='backbone', aggfunc='mean')
     if not mvtec_by_cat.empty:
-        mvtec_by_cat.plot(ax=ax3, kind='bar', width=0.8)
+        x = np.arange(len(mvtec_by_cat.index))
+        width = 0.25
+        for i, backbone in enumerate(mvtec_by_cat.columns):
+            bars = ax3.bar(x + i*width, mvtec_by_cat[backbone].values, width, 
+                          label=backbone, color=['#1f77b4', '#ff7f0e', '#2ca02c'][i])
+            # Add value labels on bars
+            for bar in bars:
+                height = bar.get_height()
+                ax3.text(bar.get_x() + bar.get_width()/2., height,
+                        f'{height:.3f}', ha='center', va='bottom', fontsize=7)
+        ax3.set_xticks(x + width)
+        ax3.set_xticklabels(mvtec_by_cat.index, rotation=45, ha='right')
         ax3.set_title('MVTec AD: Per-Category Performance', fontsize=12, fontweight='bold')
-        ax3.set_ylabel('Image AUROC')
-        ax3.set_xlabel('Category')
-        ax3.legend(title='Backbone', loc='lower right')
-        ax3.set_ylim([0.8, 1.0])
+        ax3.set_ylabel('Image AUROC', fontsize=11)
+        ax3.set_xlabel('Category', fontsize=11)
+        ax3.legend(title='Backbone', loc='lower right', fontsize=9)
+        ax3.set_ylim([0.80, 1.02])
         ax3.grid(axis='y', alpha=0.3)
-        plt.setp(ax3.xaxis.get_majorticklabels(), rotation=45, ha='right')
     
     # 4. Generalization gap comparison
     ax4 = fig.add_subplot(gs[1, 1])
@@ -87,23 +113,31 @@ def create_comparison_visualizations(
         x = np.arange(len(backbones))
         width = 0.35
         
-        ax4.bar(x - width/2, mvtec_avg_by_bb, width, label='MVTec (In-Domain)', color='#1f77b4')
-        ax4.bar(x + width/2, visa_avg_by_bb, width, label='VisA (Cross-Domain)', color='#ff7f0e')
+        bars1 = ax4.bar(x - width/2, mvtec_avg_by_bb, width, label='MVTec (In-Domain)', color='#1f77b4')
+        bars2 = ax4.bar(x + width/2, visa_avg_by_bb, width, label='VisA (Cross-Domain)', color='#ff7f0e')
+        
+        # Add value labels on bars
+        for bars in [bars1, bars2]:
+            for bar in bars:
+                height = bar.get_height()
+                ax4.text(bar.get_x() + bar.get_width()/2., height,
+                        f'{height:.4f}', ha='center', va='bottom', fontsize=8, fontweight='bold')
         
         ax4.set_title('Generalization Gap: In-Domain vs Cross-Domain', fontsize=12, fontweight='bold')
-        ax4.set_ylabel('Average Image AUROC')
-        ax4.set_xlabel('Backbone')
+        ax4.set_ylabel('Average Image AUROC', fontsize=11)
+        ax4.set_xlabel('Backbone', fontsize=11)
         ax4.set_xticks(x)
         ax4.set_xticklabels(backbones)
-        ax4.legend()
-        ax4.set_ylim([0.7, 1.0])
+        ax4.legend(fontsize=10)
+        ax4.set_ylim([0.80, 1.00])
         ax4.grid(axis='y', alpha=0.3)
         
-        # Add gap annotations
+        # Add gap annotations with bold formatting
         for i, bb in enumerate(backbones):
             gap = mvtec_avg_by_bb[bb] - visa_avg_by_bb[bb]
-            ax4.text(i, max(mvtec_avg_by_bb[bb], visa_avg_by_bb[bb]) + 0.01, 
-                    f'Gap: {gap:.3f}', ha='center', fontsize=9)
+            ax4.text(i, max(mvtec_avg_by_bb[bb], visa_avg_by_bb[bb]) + 0.015, 
+                    f'Gap: {gap:.4f}', ha='center', fontsize=10, fontweight='bold', 
+                    bbox=dict(boxstyle='round,pad=0.3', facecolor='yellow', alpha=0.3))
     
     plt.suptitle('Experiment 1: Backbone Comparison (ResNet50 vs DINOv2 vs CLIP-ViT)', 
                  fontsize=14, fontweight='bold', y=0.995)

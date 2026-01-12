@@ -6,23 +6,23 @@
 
 ## Results Overview
 
-**Performance**: v1 AUROC 0.9205-0.9379 | v2 AUROC 0.9301-0.9534 | **+1.57% average improvement**
+**Performance**: v1 AUROC 0.9272 | v2 AUROC 0.9271 | **-0.01% (essentially tied)**
 
 ### Per-Category Results
 | Category | v1 AUROC | v2 AUROC | Improvement |
 |----------|----------|----------|-------------|
-| Leather | 0.9264 | 0.9534 | +2.33% |
-| Screw | 0.9379 | 0.9484 | +1.86% |
-| Bottle | 0.9205 | 0.9443 | +1.85% |
-| Hazelnut | 0.9288 | 0.9349 | +1.38% |
-| Cable | 0.9224 | 0.9380 | +0.93% |
+| Bottle | 0.9205 | 0.9258 | +0.57% |
+| Cable | 0.9224 | 0.9287 | +0.68% |
+| Leather | 0.9264 | 0.9301 | +0.40% |
+| Screw | 0.9379 | 0.9298 | -0.86% |
+| Hazelnut | 0.9288 | 0.9211 | -0.83% |
 
 ### By Compression Level
 | Size | v1 AUROC | v2 AUROC | Improvement |
 |------|----------|----------|-------------|
-| 0.5% | 0.9228 | 0.9312 | +0.91% |
-| 1.0% | 0.9267 | 0.9370 | +1.11% |
-| 5.0% | 0.9299 | 0.9405 | +1.14% |
+| 0.5% | 0.9274 | 0.9255 | -0.20% |
+| 1.0% | 0.9296 | 0.9280 | -0.18% |
+| 5.0% | 0.9246 | 0.9278 | +0.35% |
 
 ---
 
@@ -53,11 +53,11 @@ Plus **exp2_summary.txt** with detailed statistics breakdown.
 
 ## Key Findings
 
-✅ **v2 consistently outperforms v1** across all categories (+0.93% to +2.33%)  
-✅ **Larger improvements at extreme compression** (0.5%-1.0%)  
-✅ **Maintains AUROC > 0.93** even at 0.5% compression (1-3 patches)  
-✅ **Efficient memory**: 0.5%-5.0% of original feature bank while preserving accuracy  
-✅ **Category-specific adaptation** without additional computational overhead
+✅ **Mixed performance across categories** - v2 shows improvements on some categories (+0.68% Cable, +0.57% Bottle) but degrades on others (-0.86% Screw, -0.83% Hazelnut)  
+✅ **Overall performance essentially tied** (-0.01% difference)  
+✅ **Largest improvement at 5% compression** (+0.35%) vs degradation at smaller compression levels (-0.20%, -0.18%)  
+✅ **Maintains AUROC > 0.92** across all compression levels  
+✅ **Trade-off between categories** - variance-weighted approach benefits some categories while hurting others depending on feature distribution characteristics
 
 ---
 

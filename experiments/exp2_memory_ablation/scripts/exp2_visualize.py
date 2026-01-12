@@ -43,7 +43,7 @@ class Exp2Visualizer:
             grouped = df_m.groupby("coreset_size_ratio")["image_auroc"].mean().sort_index()
 
             label = "v1: Random K-Center" if method == "random_knn" else "v2: Variance-Weighted"
-            color = "#FF6B6B" if method == "random_knn" else "#51CF66"
+            color = "#1f77b4" if method == "random_knn" else "#ff7f0e"
             marker = "o" if method == "random_knn" else "s"
 
             ax1.plot(
@@ -82,8 +82,8 @@ class Exp2Visualizer:
         x = np.arange(len(categories))
         width = 0.35
 
-        bars1 = ax2.bar(x - width / 2, v1, width, label="v1: Random", color="#FF6B6B", alpha=0.8)
-        bars2 = ax2.bar(x + width / 2, v2, width, label="v2: Variance-Weighted", color="#51CF66", alpha=0.8)
+        bars1 = ax2.bar(x - width / 2, v1, width, label="v1: Random", color="#1f77b4", alpha=0.8)
+        bars2 = ax2.bar(x + width / 2, v2, width, label="v2: Variance-Weighted", color="#ff7f0e", alpha=0.8)
 
         # Add value labels on bars
         for bars in [bars1, bars2]:
@@ -113,7 +113,7 @@ class Exp2Visualizer:
             ].mean()
             improvements.append((v2_mean - v1_mean) * 100)
 
-        colors = ["#51CF66" if x > 0 else "#FF6B6B" for x in improvements]
+        colors = ["#ff7f0e" if x > 0 else "#1f77b4" for x in improvements]
         bars = ax3.bar(categories, improvements, color=colors, alpha=0.8, edgecolor="black", linewidth=1)
 
         # Add value labels on bars
@@ -149,7 +149,7 @@ class Exp2Visualizer:
             grouped = df_m.groupby("coreset_size_ratio")["image_auroc"].mean().sort_index()
 
             label = "v1: Random K-Center" if method == "random_knn" else "v2: Variance-Weighted"
-            color = "#FF6B6B" if method == "random_knn" else "#51CF66"
+            color = "#1f77b4" if method == "random_knn" else "#ff7f0e"
             marker = "o" if method == "random_knn" else "s"
 
             ax.plot(
@@ -196,8 +196,8 @@ class Exp2Visualizer:
         x = np.arange(len(categories))
         width = 0.35
 
-        ax.bar(x - width / 2, v1, width, label="v1: Random", color="#FF6B6B", alpha=0.8)
-        ax.bar(x + width / 2, v2, width, label="v2: Variance-Weighted", color="#51CF66", alpha=0.8)
+        ax.bar(x - width / 2, v1, width, label="v1: Random", color="#1f77b4", alpha=0.8)
+        ax.bar(x + width / 2, v2, width, label="v2: Variance-Weighted", color="#ff7f0e", alpha=0.8)
 
         ax.set_xlabel("Category", fontsize=12, fontweight="bold")
         ax.set_ylabel("Mean AUROC", fontsize=12, fontweight="bold")
