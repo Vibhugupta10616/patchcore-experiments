@@ -31,6 +31,115 @@ class Exp2Visualizer:
 
         self.df = pd.read_csv(self.results_csv)
 
+    def plot_comprehensive_analysis(self) -> Path:
+        """Comprehensive visualization with all three graphs on one canvas"""
+        fig = plt.figure(figsize=(18, 5))
+        gs = fig.add_gridspec(1, 3, hspace=0.3, wspace=0.35)
+
+        # 1. Main comparison - AUROC vs compression
+        ax1 = fig.add_subplot(gs[0, 0])
+        for method in ["random_knn", "variance_weighted_knn"]:
+            df_m = self.df[self.df["method"] == method]
+            grouped = df_m.groupby("coreset_size_ratio")["image_auroc"].mean().sort_index()
+
+            label = "v1: Random K-Center" if method == "random_knn" else "v2: Variance-Weighted"
+            color = "#FF6B6B" if method == "random_knn" else "#51CF66"
+            marker = "o" if method == "random_knn" else "s"
+
+            ax1.plot(
+                grouped.index * 100,
+                grouped.values,
+                marker=marker,
+                label=label,
+                linewidth=2.5,
+                markersize=8,
+                color=color,
+            )
+
+        ax1.set_xlabel("Coreset Size (%)", fontsize=11, fontweight="bold")
+        ax1.set_ylabel("AUROC", fontsize=11, fontweight="bold")
+        ax1.set_title("v1 vs v2 Performance", fontsize=12, fontweight="bold")
+        ax1.legend(fontsize=10)
+        ax1.grid(True, alpha=0.3)
+        ax1.set_ylim([0.90, 0.96])
+
+        # 2. Category performance bars
+        ax2 = fig.add_subplot(gs[0, 1])
+        categories = sorted(self.df["category"].unique())
+        v1 = [
+            self.df[(self.df["category"] == c) & (self.df["method"] == "random_knn")][
+                "image_auroc"
+            ].mean()
+            for c in categories
+        ]
+        v2 = [
+            self.df[(self.df["category"] == c) & (self.df["method"] == "variance_weighted_knn")][
+                "image_auroc"
+            ].mean()
+            for c in categories
+        ]
+
+        x = np.arange(len(categories))
+        width = 0.35
+
+        bars1 = ax2.bar(x - width / 2, v1, width, label="v1: Random", color="#FF6B6B", alpha=0.8)
+        bars2 = ax2.bar(x + width / 2, v2, width, label="v2: Variance-Weighted", color="#51CF66", alpha=0.8)
+
+        # Add value labels on bars
+        for bars in [bars1, bars2]:
+            for bar in bars:
+                height = bar.get_height()
+                ax2.text(bar.get_x() + bar.get_width()/2., height,
+                        f'{height:.3f}', ha='center', va='bottom', fontsize=7)
+
+        ax2.set_xlabel("Category", fontsize=11, fontweight="bold")
+        ax2.set_ylabel("Mean AUROC", fontsize=11, fontweight="bold")
+        ax2.set_title("Per-Category Performance", fontsize=12, fontweight="bold")
+        ax2.set_xticks(x)
+        ax2.set_xticklabels(categories, rotation=45, ha="right")
+        ax2.legend(fontsize=10)
+        ax2.set_ylim([0.90, 0.96])
+        ax2.grid(True, alpha=0.3, axis="y")
+
+        # 3. Improvement percentage
+        ax3 = fig.add_subplot(gs[0, 2])
+        improvements = []
+        for c in categories:
+            v1_mean = self.df[(self.df["category"] == c) & (self.df["method"] == "random_knn")][
+                "image_auroc"
+            ].mean()
+            v2_mean = self.df[(self.df["category"] == c) & (self.df["method"] == "variance_weighted_knn")][
+                "image_auroc"
+            ].mean()
+            improvements.append((v2_mean - v1_mean) * 100)
+
+        colors = ["#51CF66" if x > 0 else "#FF6B6B" for x in improvements]
+        bars = ax3.bar(categories, improvements, color=colors, alpha=0.8, edgecolor="black", linewidth=1)
+
+        # Add value labels on bars
+        for bar in bars:
+            height = bar.get_height()
+            ax3.text(bar.get_x() + bar.get_width()/2., height,
+                    f'{height:.2f}%', ha='center', va='bottom' if height > 0 else 'top', fontsize=8)
+
+        ax3.axhline(0, color="black", linewidth=1)
+        ax3.set_xlabel("Category", fontsize=11, fontweight="bold")
+        ax3.set_ylabel("Improvement (%)", fontsize=11, fontweight="bold")
+        ax3.set_title("v2 Improvement over v1", fontsize=12, fontweight="bold")
+        x_pos = np.arange(len(categories))
+        ax3.set_xticks(x_pos)
+        ax3.set_xticklabels(categories, rotation=45, ha="right")
+        ax3.grid(True, alpha=0.3, axis="y")
+
+        plt.suptitle("Experiment 2: Adaptive Coreset Sampling Analysis", 
+                     fontsize=14, fontweight="bold", y=1.00)
+
+        fig.tight_layout()
+        path = self.vis_dir / "exp2_comprehensive_analysis.png"
+        fig.savefig(path, dpi=200, bbox_inches="tight")
+        plt.close(fig)
+        return path
+
     def plot_main_comparison(self) -> Path:
         """Simple line plot: AUROC vs compression for both methods"""
         fig, ax = plt.subplots(figsize=(10, 6))
@@ -195,14 +304,8 @@ class Exp2Visualizer:
         print("GENERATING EXP2 VISUALIZATIONS")
         print("=" * 60)
 
-        p1 = self.plot_main_comparison()
-        print(f"✓ Main comparison: {p1.name}")
-
-        p2 = self.plot_category_bars()
-        print(f"✓ Category performance: {p2.name}")
-
-        p3 = self.plot_improvement()
-        print(f"✓ Improvement chart: {p3.name}")
+        p0 = self.plot_comprehensive_analysis()
+        print(f"✓ Comprehensive analysis: {p0.name}")
 
         p4 = self.generate_summary()
         print(f"✓ Summary report: {p4.name}")

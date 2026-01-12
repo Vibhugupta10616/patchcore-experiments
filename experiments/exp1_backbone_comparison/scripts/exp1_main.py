@@ -150,7 +150,7 @@ def main():
     
     # Create comparison visualization
     logger.info("Creating comparison visualization...")
-    create_comparison_visualizations(df, viz_dir, output_dir)
+    create_comparison_visualizations(df, viz_dir)
     
     # Save individual backbone results
     for backbone in df['backbone'].unique():

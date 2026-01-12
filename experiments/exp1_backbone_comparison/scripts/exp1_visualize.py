@@ -14,8 +14,7 @@ logger = logging.getLogger(__name__)
 
 def create_comparison_visualizations(
     df: pd.DataFrame,
-    viz_dir: Path,
-    output_dir: Path
+    viz_dir: Path
 ) -> None:
     """
     Create comparison visualization for backbone comparison.
@@ -28,7 +27,6 @@ def create_comparison_visualizations(
     Args:
         df: Results dataframe
         viz_dir: Directory to save visualizations
-        output_dir: Output results directory
     """
     logger.info(f"Creating visualizations in {viz_dir}")
     
@@ -41,13 +39,15 @@ def create_comparison_visualizations(
     mvtec_df = df[df['dataset'] == 'MVTec AD']
     if len(mvtec_df) > 0:
         mvtec_by_backbone = mvtec_df.groupby('backbone')['image_auroc'].mean().sort_values(ascending=False)
-        mvtec_by_backbone.plot(ax=ax1, kind='bar', color=['#1f77b4', '#ff7f0e', '#2ca02c'])
+        mvtec_by_backbone.plot(ax=ax1, kind='bar', color=['#1f77b4', '#ff7f0e', '#2ca02c'], legend=False)
         ax1.set_title('In-Domain Performance: MVTec AD by Backbone', fontsize=12, fontweight='bold')
         ax1.set_ylabel('Average Image AUROC')
         ax1.set_xlabel('Backbones', fontsize=11)
         ax1.set_ylim([0.8, 1.0])
         ax1.axhline(y=0.95, color='r', linestyle='--', alpha=0.3, label='Baseline (0.95)')
-        ax1.legend()
+        # Clear any existing legend and add only baseline
+        ax1.get_legend_handles_labels()
+        ax1.legend(['Baseline (0.95)'], loc='upper right')
         ax1.grid(axis='y', alpha=0.3)
         plt.setp(ax1.xaxis.get_majorticklabels(), rotation=0)
     
@@ -108,14 +108,12 @@ def create_comparison_visualizations(
     plt.suptitle('Experiment 1: Backbone Comparison (ResNet50 vs DINOv2 vs CLIP-ViT)', 
                  fontsize=14, fontweight='bold', y=0.995)
     
+    # Ensure visualization directory exists
+    viz_dir.mkdir(parents=True, exist_ok=True)
+    
     # Save main comparison figure to visualizations folder
     plot_path = viz_dir / 'exp1_backbone_comparison.png'
     plt.savefig(plot_path, dpi=150, bbox_inches='tight')
     logger.info(f"✓ Main visualization saved to: {plot_path}")
-    
-    # Also save to output directory
-    plot_path_output = output_dir / 'exp1_backbone_comparison.png'
-    plt.savefig(plot_path_output, dpi=150, bbox_inches='tight')
-    logger.info(f"✓ Comparison visualization also saved to: {plot_path_output}")
     
     plt.close()
