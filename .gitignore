@@ -4,7 +4,7 @@
 # Keep only experiments folder and root README files
 !experiments/
 !experiments/**
-!README*.md
+!README_ALL_EXPERIMENTS.md
 
 # But ignore data and common folders inside experiments
 experiments/data/
