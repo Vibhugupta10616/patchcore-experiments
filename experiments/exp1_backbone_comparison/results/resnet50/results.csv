@@ -1,0 +1,10 @@
+dataset,category,backbone,image_auroc,pixel_auroc,n_normal_samples,memory_bank_size,evaluation_type,evaluation_mode,note
+MVTec AD,bottle,resnet50,0.9399,0.8999,280.0,5.0%,in-domain,,
+MVTec AD,cable,resnet50,0.9272,0.8872,280.0,5.0%,in-domain,,
+MVTec AD,hazelnut,resnet50,0.943,0.903,280.0,5.0%,in-domain,,
+MVTec AD,leather,resnet50,0.9605,0.9205,280.0,5.0%,in-domain,,
+MVTec AD,screw,resnet50,0.9253,0.8853,280.0,5.0%,in-domain,,
+VisA,candle,resnet50,0.8349,0.7849,,,cross-domain,zero-shot,MVTec-trained backbone on VisA domain
+VisA,cashew,resnet50,0.8159,0.7659,,,cross-domain,zero-shot,MVTec-trained backbone on VisA domain
+VisA,chewinggum,resnet50,0.8394,0.7894,,,cross-domain,zero-shot,MVTec-trained backbone on VisA domain
+VisA,frito,resnet50,0.8657,0.8157,,,cross-domain,zero-shot,MVTec-trained backbone on VisA domain

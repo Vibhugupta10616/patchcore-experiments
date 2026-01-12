@@ -197,7 +197,7 @@ Enable fast inference with approximate nearest neighbor (ANN) search:
 - **nprobe**: [1, 4, 8, 16] - Search breadth
 - **Fixed**: `n_clusters=100`, `m=8`
 
-### Results Summary (Jan 12, 2026)
+### Results Summary
 
 Best configurations per category:
 
@@ -239,17 +239,7 @@ Best configurations per category:
 | `exp3_category_analysis_*.png` | Per-category 2×3 subplot breakdown |
 | `exp3_*.log` | Detailed execution log with per-category timing |
 
-### Configuration Parameters
-
-**FAISS IVF-PQ Settings** (`exp3_config.yaml`):
-
-```yaml
-faiss_config:
-  pq_bits: [4, 8, 16]           # Quantization bits
-  nprobe: [1, 4, 8, 16]         # Clusters to search
-  n_clusters: 100                # IVF cluster centers
-  m: 8                           # PQ subquantizers
-```
+### FAISS Configuration Example``
 
 **Key Parameters:**
 
@@ -370,32 +360,4 @@ bottle,faiss_ivfpq,4,4,0.6548,0.1,0.0076,56.1,8.0,0.00
 - **0.70-0.80**: Fair detection, more false positives
 - **< 0.70**: Poor detection
 
-### Speedup Calculation
-
-```
-Speedup = baseline_search_time / faiss_search_time
-100× speedup = 100× faster inference
-```
-
-### Memory Reduction
-
-```
-Memory Reduction = baseline_memory / faiss_memory
-8.0× reduction = 1/8 of original memory footprint
-```
-
 ---
-
----
-
-## Status
-
-✅ **All Experiments Complete & Validated** (January 12, 2026)
-
-- Exp 1: Real models (ResNet50, DINOv2) with real MVTec/VisA data
-- Exp 2: Variance-weighted coreset with comprehensive analysis
-- Exp 3: FAISS IVF-PQ with 35+ configurations tested
-
----
-
-
