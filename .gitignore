@@ -1,32 +1,10 @@
-.idea/
-__pycache__/
-LabletAnomaly.egg-info/
-.env
-.env.local
-*.env
-.env
-.env.local
-*.env
+# Ignore everything
+*
 
-# --- Experiment datasets (do not commit) ---
+# Keep only experiments folder
+!experiments/
+!experiments/**
+
+# But ignore data and common folders inside experiments
 experiments/data/
-experiments/data/**
-
-# --- Experiment outputs (generated) ---
-experiments/logs/
-experiments/logs/**
-experiments/results/
-experiments/results/**
-experiments/**/logs/
-experiments/**/results/
-
-# --- Keep experiment results ---
-!experiments/exp1_backbone_comparison/results/
-!experiments/exp1_backbone_comparison/results/**
-!experiments/exp2_memory_ablation/results/
-!experiments/exp2_memory_ablation/results/**
-!experiments/exp3_cross_dataset/results/
-!experiments/exp3_cross_dataset/results/**
-
-# --- Local virtual environments ---
-radl/
+experiments/common/

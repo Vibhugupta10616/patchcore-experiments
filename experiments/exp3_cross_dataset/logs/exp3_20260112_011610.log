@@ -1,0 +1,253 @@
+2026-01-12 01:16:10,904 - __main__ - INFO - ======================================================================
+2026-01-12 01:16:10,904 - __main__ - INFO - Experiment 3: FAISS-Based Memory Compression & ANN Search
+2026-01-12 01:16:10,904 - __main__ - INFO - ======================================================================
+2026-01-12 01:16:10,908 - __main__ - INFO - Categories: ['bottle', 'cable', 'hazelnut', 'leather', 'screw']
+2026-01-12 01:16:10,908 - __main__ - INFO - PQ bits: [4, 8, 16]
+2026-01-12 01:16:10,909 - __main__ - INFO - Nprobe values: [1, 4, 8, 16]
+2026-01-12 01:16:10,909 - __main__ - INFO - FAISS available: True
+2026-01-12 01:16:10,909 - __main__ - INFO - 
+2026-01-12 01:16:10,909 - __main__ - INFO - ======================================================================
+2026-01-12 01:16:11,186 - __main__ - INFO - Category 1/5: BOTTLE
+2026-01-12 01:16:11,186 - __main__ - INFO - ======================================================================
+2026-01-12 01:16:11,187 - __main__ - INFO - Loading bottle dataset...
+2026-01-12 01:16:11,193 - __main__ - INFO - [OK] Train: (209, 512), Test: (83, 512)
+2026-01-12 01:16:11,193 - __main__ - INFO - [OK] Anomaly ratio: 75.90%
+2026-01-12 01:16:11,193 - __main__ - INFO - Evaluating exact k-NN (baseline)...
+2026-01-12 01:16:11,229 - __main__ - INFO -   AUROC: 0.5722
+2026-01-12 01:16:11,230 - __main__ - INFO -   Memory: 0.4 MB
+2026-01-12 01:16:11,230 - __main__ - INFO -   Search time: 0.4274 ms
+2026-01-12 01:16:11,230 - __main__ - INFO - Evaluating FAISS IVF-PQ variants...
+2026-01-12 01:16:11,230 - __main__ - INFO -   Testing 4-bit, nprobe=1...
+2026-01-12 01:16:11,275 - __main__ - INFO -     AUROC: 0.5190 (loss: 5.32%)
+2026-01-12 01:16:11,276 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:11,276 - __main__ - INFO -     Speedup: 50.4x
+2026-01-12 01:16:11,276 - __main__ - INFO -   Testing 4-bit, nprobe=4...
+2026-01-12 01:16:11,319 - __main__ - INFO -     AUROC: 0.6548 (loss: 0.00%)
+2026-01-12 01:16:11,319 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:11,319 - __main__ - INFO -     Speedup: 56.1x
+2026-01-12 01:16:11,320 - __main__ - INFO -   Testing 4-bit, nprobe=8...
+2026-01-12 01:16:11,367 - __main__ - INFO -     AUROC: 0.6548 (loss: 0.00%)
+2026-01-12 01:16:11,367 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:11,368 - __main__ - INFO -     Speedup: 60.7x
+2026-01-12 01:16:11,368 - __main__ - INFO -   Testing 4-bit, nprobe=16...
+2026-01-12 01:16:11,414 - __main__ - INFO -     AUROC: 0.6548 (loss: 0.00%)
+2026-01-12 01:16:11,415 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:11,415 - __main__ - INFO -     Speedup: 59.2x
+2026-01-12 01:16:11,416 - __main__ - INFO -   Testing 8-bit, nprobe=1...
+2026-01-12 01:16:11,423 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (209) should be at least as large as number of clusters (256)
+2026-01-12 01:16:11,424 - __main__ - INFO -   Testing 8-bit, nprobe=4...
+2026-01-12 01:16:11,435 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (209) should be at least as large as number of clusters (256)
+2026-01-12 01:16:11,435 - __main__ - INFO -   Testing 8-bit, nprobe=8...
+2026-01-12 01:16:11,442 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (209) should be at least as large as number of clusters (256)
+2026-01-12 01:16:11,443 - __main__ - INFO -   Testing 8-bit, nprobe=16...
+2026-01-12 01:16:11,451 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (209) should be at least as large as number of clusters (256)
+2026-01-12 01:16:11,452 - __main__ - INFO -   Testing 16-bit, nprobe=1...
+2026-01-12 01:16:11,534 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (209) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:11,535 - __main__ - INFO -   Testing 16-bit, nprobe=4...
+2026-01-12 01:16:11,663 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (209) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:11,663 - __main__ - INFO -   Testing 16-bit, nprobe=8...
+2026-01-12 01:16:11,758 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (209) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:11,758 - __main__ - INFO -   Testing 16-bit, nprobe=16...
+2026-01-12 01:16:11,850 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (209) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:11,850 - __main__ - INFO - 
+2026-01-12 01:16:11,850 - __main__ - INFO - ======================================================================
+2026-01-12 01:16:11,851 - __main__ - INFO - Category 2/5: CABLE
+2026-01-12 01:16:11,851 - __main__ - INFO - ======================================================================
+2026-01-12 01:16:11,852 - __main__ - INFO - Loading cable dataset...
+2026-01-12 01:16:11,870 - __main__ - INFO - [OK] Train: (224, 512), Test: (150, 512)
+2026-01-12 01:16:11,870 - __main__ - INFO - [OK] Anomaly ratio: 61.33%
+2026-01-12 01:16:11,871 - __main__ - INFO - Evaluating exact k-NN (baseline)...
+2026-01-12 01:16:11,967 - __main__ - INFO -   AUROC: 0.4010
+2026-01-12 01:16:11,968 - __main__ - INFO -   Memory: 0.4 MB
+2026-01-12 01:16:11,968 - __main__ - INFO -   Search time: 0.6388 ms
+2026-01-12 01:16:11,968 - __main__ - INFO - Evaluating FAISS IVF-PQ variants...
+2026-01-12 01:16:11,969 - __main__ - INFO -   Testing 4-bit, nprobe=1...
+2026-01-12 01:16:12,058 - __main__ - INFO -     AUROC: 0.4751 (loss: 0.00%)
+2026-01-12 01:16:12,058 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:12,059 - __main__ - INFO -     Speedup: 108.6x
+2026-01-12 01:16:12,059 - __main__ - INFO -   Testing 4-bit, nprobe=4...
+2026-01-12 01:16:12,115 - __main__ - INFO -     AUROC: 0.5883 (loss: 0.00%)
+2026-01-12 01:16:12,115 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:12,116 - __main__ - INFO -     Speedup: 90.5x
+2026-01-12 01:16:12,116 - __main__ - INFO -   Testing 4-bit, nprobe=8...
+2026-01-12 01:16:12,162 - __main__ - INFO -     AUROC: 0.5868 (loss: 0.00%)
+2026-01-12 01:16:12,162 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:12,162 - __main__ - INFO -     Speedup: 98.3x
+2026-01-12 01:16:12,163 - __main__ - INFO -   Testing 4-bit, nprobe=16...
+2026-01-12 01:16:12,212 - __main__ - INFO -     AUROC: 0.5868 (loss: 0.00%)
+2026-01-12 01:16:12,213 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:12,213 - __main__ - INFO -     Speedup: 63.3x
+2026-01-12 01:16:12,213 - __main__ - INFO -   Testing 8-bit, nprobe=1...
+2026-01-12 01:16:12,222 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (224) should be at least as large as number of clusters (256)
+2026-01-12 01:16:12,223 - __main__ - INFO -   Testing 8-bit, nprobe=4...
+2026-01-12 01:16:12,231 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (224) should be at least as large as number of clusters (256)
+2026-01-12 01:16:12,232 - __main__ - INFO -   Testing 8-bit, nprobe=8...
+2026-01-12 01:16:12,240 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (224) should be at least as large as number of clusters (256)
+2026-01-12 01:16:12,241 - __main__ - INFO -   Testing 8-bit, nprobe=16...
+2026-01-12 01:16:12,249 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (224) should be at least as large as number of clusters (256)
+2026-01-12 01:16:12,250 - __main__ - INFO -   Testing 16-bit, nprobe=1...
+2026-01-12 01:16:12,309 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (224) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:12,310 - __main__ - INFO -   Testing 16-bit, nprobe=4...
+2026-01-12 01:16:12,392 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (224) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:12,393 - __main__ - INFO -   Testing 16-bit, nprobe=8...
+2026-01-12 01:16:12,483 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (224) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:12,483 - __main__ - INFO -   Testing 16-bit, nprobe=16...
+2026-01-12 01:16:12,576 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (224) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:12,577 - __main__ - INFO - 
+2026-01-12 01:16:12,577 - __main__ - INFO - ======================================================================
+2026-01-12 01:16:12,578 - __main__ - INFO - Category 3/5: HAZELNUT
+2026-01-12 01:16:12,578 - __main__ - INFO - ======================================================================
+2026-01-12 01:16:12,578 - __main__ - INFO - Loading hazelnut dataset...
+2026-01-12 01:16:12,601 - __main__ - INFO - [OK] Train: (391, 512), Test: (110, 512)
+2026-01-12 01:16:12,602 - __main__ - INFO - [OK] Anomaly ratio: 63.64%
+2026-01-12 01:16:12,602 - __main__ - INFO - Evaluating exact k-NN (baseline)...
+2026-01-12 01:16:12,719 - __main__ - INFO -   AUROC: 0.5543
+2026-01-12 01:16:12,720 - __main__ - INFO -   Memory: 0.8 MB
+2026-01-12 01:16:12,720 - __main__ - INFO -   Search time: 1.0609 ms
+2026-01-12 01:16:12,720 - __main__ - INFO - Evaluating FAISS IVF-PQ variants...
+2026-01-12 01:16:12,720 - __main__ - INFO -   Testing 4-bit, nprobe=1...
+2026-01-12 01:16:12,786 - __main__ - INFO -     AUROC: 0.5071 (loss: 4.71%)
+2026-01-12 01:16:12,787 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:12,787 - __main__ - INFO -     Speedup: 143.1x
+2026-01-12 01:16:12,788 - __main__ - INFO -   Testing 4-bit, nprobe=4...
+2026-01-12 01:16:12,843 - __main__ - INFO -     AUROC: 0.5100 (loss: 4.43%)
+2026-01-12 01:16:12,843 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:12,843 - __main__ - INFO -     Speedup: 139.6x
+2026-01-12 01:16:12,844 - __main__ - INFO -   Testing 4-bit, nprobe=8...
+2026-01-12 01:16:12,902 - __main__ - INFO -     AUROC: 0.5104 (loss: 4.39%)
+2026-01-12 01:16:12,902 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:12,902 - __main__ - INFO -     Speedup: 162.4x
+2026-01-12 01:16:12,903 - __main__ - INFO -   Testing 4-bit, nprobe=16...
+2026-01-12 01:16:12,963 - __main__ - INFO -     AUROC: 0.5104 (loss: 4.39%)
+2026-01-12 01:16:12,963 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:12,963 - __main__ - INFO -     Speedup: 123.9x
+2026-01-12 01:16:12,964 - __main__ - INFO -   Testing 8-bit, nprobe=1...
+2026-01-12 01:16:13,117 - __main__ - INFO -     AUROC: 0.5271 (loss: 2.71%)
+2026-01-12 01:16:13,117 - __main__ - INFO -     Memory: 0.2 MB (4.0x)
+2026-01-12 01:16:13,118 - __main__ - INFO -     Speedup: 84.8x
+2026-01-12 01:16:13,118 - __main__ - INFO -   Testing 8-bit, nprobe=4...
+2026-01-12 01:16:13,276 - __main__ - INFO -     AUROC: 0.5279 (loss: 2.64%)
+2026-01-12 01:16:13,276 - __main__ - INFO -     Memory: 0.2 MB (4.0x)
+2026-01-12 01:16:13,277 - __main__ - INFO -     Speedup: 74.2x
+2026-01-12 01:16:13,277 - __main__ - INFO -   Testing 8-bit, nprobe=8...
+2026-01-12 01:16:13,437 - __main__ - INFO -     AUROC: 0.5157 (loss: 3.86%)
+2026-01-12 01:16:13,437 - __main__ - INFO -     Memory: 0.2 MB (4.0x)
+2026-01-12 01:16:13,438 - __main__ - INFO -     Speedup: 69.8x
+2026-01-12 01:16:13,438 - __main__ - INFO -   Testing 8-bit, nprobe=16...
+2026-01-12 01:16:13,609 - __main__ - INFO -     AUROC: 0.5318 (loss: 2.25%)
+2026-01-12 01:16:13,609 - __main__ - INFO -     Memory: 0.2 MB (4.0x)
+2026-01-12 01:16:13,609 - __main__ - INFO -     Speedup: 64.0x
+2026-01-12 01:16:13,610 - __main__ - INFO -   Testing 16-bit, nprobe=1...
+2026-01-12 01:16:13,671 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (391) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:13,672 - __main__ - INFO -   Testing 16-bit, nprobe=4...
+2026-01-12 01:16:13,755 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (391) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:13,755 - __main__ - INFO -   Testing 16-bit, nprobe=8...
+2026-01-12 01:16:13,838 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (391) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:13,839 - __main__ - INFO -   Testing 16-bit, nprobe=16...
+2026-01-12 01:16:13,928 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (391) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:13,929 - __main__ - INFO - 
+2026-01-12 01:16:13,930 - __main__ - INFO - ======================================================================
+2026-01-12 01:16:13,930 - __main__ - INFO - Category 4/5: LEATHER
+2026-01-12 01:16:13,930 - __main__ - INFO - ======================================================================
+2026-01-12 01:16:13,931 - __main__ - INFO - Loading leather dataset...
+2026-01-12 01:16:13,951 - __main__ - INFO - [OK] Train: (245, 512), Test: (124, 512)
+2026-01-12 01:16:13,952 - __main__ - INFO - [OK] Anomaly ratio: 74.19%
+2026-01-12 01:16:13,953 - __main__ - INFO - Evaluating exact k-NN (baseline)...
+2026-01-12 01:16:14,034 - __main__ - INFO -   AUROC: 0.6406
+2026-01-12 01:16:14,035 - __main__ - INFO -   Memory: 0.5 MB
+2026-01-12 01:16:14,035 - __main__ - INFO -   Search time: 0.6441 ms
+2026-01-12 01:16:14,035 - __main__ - INFO - Evaluating FAISS IVF-PQ variants...
+2026-01-12 01:16:14,035 - __main__ - INFO -   Testing 4-bit, nprobe=1...
+2026-01-12 01:16:14,107 - __main__ - INFO -     AUROC: 0.2401 (loss: 40.05%)
+2026-01-12 01:16:14,108 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:14,108 - __main__ - INFO -     Speedup: 89.4x
+2026-01-12 01:16:14,108 - __main__ - INFO -   Testing 4-bit, nprobe=4...
+2026-01-12 01:16:14,165 - __main__ - INFO -     AUROC: 0.5194 (loss: 12.13%)
+2026-01-12 01:16:14,165 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:14,165 - __main__ - INFO -     Speedup: 102.4x
+2026-01-12 01:16:14,166 - __main__ - INFO -   Testing 4-bit, nprobe=8...
+2026-01-12 01:16:14,230 - __main__ - INFO -     AUROC: 0.5200 (loss: 12.06%)
+2026-01-12 01:16:14,230 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:14,230 - __main__ - INFO -     Speedup: 100.7x
+2026-01-12 01:16:14,231 - __main__ - INFO -   Testing 4-bit, nprobe=16...
+2026-01-12 01:16:14,284 - __main__ - INFO -     AUROC: 0.5200 (loss: 12.06%)
+2026-01-12 01:16:14,284 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:14,285 - __main__ - INFO -     Speedup: 82.8x
+2026-01-12 01:16:14,285 - __main__ - INFO -   Testing 8-bit, nprobe=1...
+2026-01-12 01:16:14,297 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (245) should be at least as large as number of clusters (256)
+2026-01-12 01:16:14,298 - __main__ - INFO -   Testing 8-bit, nprobe=4...
+2026-01-12 01:16:14,308 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (245) should be at least as large as number of clusters (256)
+2026-01-12 01:16:14,309 - __main__ - INFO -   Testing 8-bit, nprobe=8...
+2026-01-12 01:16:14,321 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (245) should be at least as large as number of clusters (256)
+2026-01-12 01:16:14,322 - __main__ - INFO -   Testing 8-bit, nprobe=16...
+2026-01-12 01:16:14,332 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (245) should be at least as large as number of clusters (256)
+2026-01-12 01:16:14,332 - __main__ - INFO -   Testing 16-bit, nprobe=1...
+2026-01-12 01:16:14,384 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (245) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:14,385 - __main__ - INFO -   Testing 16-bit, nprobe=4...
+2026-01-12 01:16:14,474 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (245) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:14,475 - __main__ - INFO -   Testing 16-bit, nprobe=8...
+2026-01-12 01:16:14,558 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (245) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:14,558 - __main__ - INFO -   Testing 16-bit, nprobe=16...
+2026-01-12 01:16:14,653 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (245) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:14,654 - __main__ - INFO - 
+2026-01-12 01:16:14,655 - __main__ - INFO - ======================================================================
+2026-01-12 01:16:14,656 - __main__ - INFO - Category 5/5: SCREW
+2026-01-12 01:16:14,656 - __main__ - INFO - ======================================================================
+2026-01-12 01:16:14,656 - __main__ - INFO - Loading screw dataset...
+2026-01-12 01:16:14,682 - __main__ - INFO - [OK] Train: (320, 512), Test: (160, 512)
+2026-01-12 01:16:14,690 - __main__ - INFO - [OK] Anomaly ratio: 74.38%
+2026-01-12 01:16:14,699 - __main__ - INFO - Evaluating exact k-NN (baseline)...
+2026-01-12 01:16:14,837 - __main__ - INFO -   AUROC: 0.4747
+2026-01-12 01:16:14,837 - __main__ - INFO -   Memory: 0.6 MB
+2026-01-12 01:16:14,837 - __main__ - INFO -   Search time: 0.8568 ms
+2026-01-12 01:16:14,837 - __main__ - INFO - Evaluating FAISS IVF-PQ variants...
+2026-01-12 01:16:14,838 - __main__ - INFO -   Testing 4-bit, nprobe=1...
+2026-01-12 01:16:14,919 - __main__ - INFO -     AUROC: 0.4735 (loss: 0.12%)
+2026-01-12 01:16:14,920 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:14,920 - __main__ - INFO -     Speedup: 131.0x
+2026-01-12 01:16:14,921 - __main__ - INFO -   Testing 4-bit, nprobe=4...
+2026-01-12 01:16:14,984 - __main__ - INFO -     AUROC: 0.4571 (loss: 1.76%)
+2026-01-12 01:16:14,984 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:14,985 - __main__ - INFO -     Speedup: 124.9x
+2026-01-12 01:16:14,985 - __main__ - INFO -   Testing 4-bit, nprobe=8...
+2026-01-12 01:16:15,053 - __main__ - INFO -     AUROC: 0.4571 (loss: 1.76%)
+2026-01-12 01:16:15,054 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:15,054 - __main__ - INFO -     Speedup: 96.6x
+2026-01-12 01:16:15,055 - __main__ - INFO -   Testing 4-bit, nprobe=16...
+2026-01-12 01:16:15,111 - __main__ - INFO -     AUROC: 0.4571 (loss: 1.76%)
+2026-01-12 01:16:15,113 - __main__ - INFO -     Memory: 0.1 MB (8.0x)
+2026-01-12 01:16:15,113 - __main__ - INFO -     Speedup: 81.0x
+2026-01-12 01:16:15,113 - __main__ - INFO -   Testing 8-bit, nprobe=1...
+2026-01-12 01:16:15,296 - __main__ - INFO -     AUROC: 0.3788 (loss: 9.59%)
+2026-01-12 01:16:15,296 - __main__ - INFO -     Memory: 0.2 MB (4.0x)
+2026-01-12 01:16:15,297 - __main__ - INFO -     Speedup: 39.3x
+2026-01-12 01:16:15,297 - __main__ - INFO -   Testing 8-bit, nprobe=4...
+2026-01-12 01:16:15,458 - __main__ - INFO -     AUROC: 0.4798 (loss: 0.00%)
+2026-01-12 01:16:15,458 - __main__ - INFO -     Memory: 0.2 MB (4.0x)
+2026-01-12 01:16:15,459 - __main__ - INFO -     Speedup: 57.2x
+2026-01-12 01:16:15,459 - __main__ - INFO -   Testing 8-bit, nprobe=8...
+2026-01-12 01:16:15,739 - __main__ - INFO -     AUROC: 0.4132 (loss: 6.15%)
+2026-01-12 01:16:15,739 - __main__ - INFO -     Memory: 0.2 MB (4.0x)
+2026-01-12 01:16:15,740 - __main__ - INFO -     Speedup: 37.0x
+2026-01-12 01:16:15,740 - __main__ - INFO -   Testing 8-bit, nprobe=16...
+2026-01-12 01:16:15,895 - __main__ - INFO -     AUROC: 0.4198 (loss: 5.49%)
+2026-01-12 01:16:15,896 - __main__ - INFO -     Memory: 0.2 MB (4.0x)
+2026-01-12 01:16:15,896 - __main__ - INFO -     Speedup: 42.2x
+2026-01-12 01:16:15,896 - __main__ - INFO -   Testing 16-bit, nprobe=1...
+2026-01-12 01:16:15,950 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (320) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:15,950 - __main__ - INFO -   Testing 16-bit, nprobe=4...
+2026-01-12 01:16:16,038 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (320) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:16,040 - __main__ - INFO -   Testing 16-bit, nprobe=8...
+2026-01-12 01:16:16,141 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (320) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:16,141 - __main__ - INFO -   Testing 16-bit, nprobe=16...
+2026-01-12 01:16:16,231 - __main__ - ERROR -     Error: Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\a\faiss-wheels\faiss-wheels\third-party\faiss\faiss\Clustering.cpp:280: Error: 'nx >= k' failed: Number of training points (320) should be at least as large as number of clusters (65536)
+2026-01-12 01:16:16,243 - __main__ - INFO - [OK] Results saved: ..\results\exp3_results_20260112_011610.csv
+2026-01-12 01:16:16,243 - __main__ - INFO - Creating comprehensive visualizations...
+2026-01-12 01:16:18,531 - exp3_visualizations - INFO - Comprehensive visualization saved: ..\visualizations\exp3_comprehensive_analysis_20260112_011610.png
+2026-01-12 01:16:19,940 - exp3_visualizations - INFO - Category analysis saved: ..\visualizations\exp3_category_analysis_20260112_011610.png
+2026-01-12 01:16:19,953 - __main__ - INFO - 
+2026-01-12 01:16:19,954 - __main__ - INFO - ======================================================================
+2026-01-12 01:16:19,954 - __main__ - INFO - [OK] Experiment 3 completed successfully!
+2026-01-12 01:16:19,954 - __main__ - INFO - [OK] Results: ..\results\exp3_results_20260112_011610.csv
+2026-01-12 01:16:19,954 - __main__ - INFO - [OK] Logs: ..\logs\exp3_20260112_011610.log
+2026-01-12 01:16:19,955 - __main__ - INFO - ======================================================================

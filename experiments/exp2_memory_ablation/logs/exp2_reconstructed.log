@@ -1,0 +1,26 @@
+RECONSTRUCTED RUN LOG (built from results_all_methods.csv)
+
+Category: bottle
+  Coreset 0.5% | Random AUROC 0.9265 | Variance-W AUROC 0.9405 (+1.40%)
+  Coreset 1.0% | Random AUROC 0.9238 | Variance-W AUROC 0.9144 (-0.94%)
+  Coreset 5.0% | Random AUROC 0.9113 | Variance-W AUROC 0.9225 (+1.12%)
+
+Category: cable
+  Coreset 0.5% | Random AUROC 0.9209 | Variance-W AUROC 0.9073 (-1.36%)
+  Coreset 1.0% | Random AUROC 0.9218 | Variance-W AUROC 0.9342 (+1.24%)
+  Coreset 5.0% | Random AUROC 0.9244 | Variance-W AUROC 0.9445 (+2.01%)
+
+Category: hazelnut
+  Coreset 0.5% | Random AUROC 0.9219 | Variance-W AUROC 0.9067 (-1.52%)
+  Coreset 1.0% | Random AUROC 0.9298 | Variance-W AUROC 0.9385 (+0.87%)
+  Coreset 5.0% | Random AUROC 0.9346 | Variance-W AUROC 0.9181 (-1.65%)
+
+Category: leather
+  Coreset 0.5% | Random AUROC 0.9321 | Variance-W AUROC 0.9353 (+0.32%)
+  Coreset 1.0% | Random AUROC 0.9258 | Variance-W AUROC 0.9274 (+0.16%)
+  Coreset 5.0% | Random AUROC 0.9214 | Variance-W AUROC 0.9277 (+0.63%)
+
+Category: screw
+  Coreset 0.5% | Random AUROC 0.9355 | Variance-W AUROC 0.9378 (+0.23%)
+  Coreset 1.0% | Random AUROC 0.9470 | Variance-W AUROC 0.9254 (-2.16%)
+  Coreset 5.0% | Random AUROC 0.9311 | Variance-W AUROC 0.9262 (-0.49%)

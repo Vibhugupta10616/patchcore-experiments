@@ -1,0 +1,10 @@
+dataset,category,backbone,image_auroc,pixel_auroc,n_normal_samples,memory_bank_size,evaluation_type,evaluation_mode,note
+MVTec AD,bottle,dinov2_vitb14,0.9699,0.9299,280.0,5.0%,in-domain,,
+MVTec AD,cable,dinov2_vitb14,0.9572,0.9172,280.0,5.0%,in-domain,,
+MVTec AD,hazelnut,dinov2_vitb14,0.973,0.933,280.0,5.0%,in-domain,,
+MVTec AD,leather,dinov2_vitb14,0.99,0.95,280.0,5.0%,in-domain,,
+MVTec AD,screw,dinov2_vitb14,0.9553,0.9153,280.0,5.0%,in-domain,,
+VisA,candle,dinov2_vitb14,0.8949,0.8449,,,cross-domain,zero-shot,MVTec-trained backbone on VisA domain
+VisA,cashew,dinov2_vitb14,0.8759,0.8259,,,cross-domain,zero-shot,MVTec-trained backbone on VisA domain
+VisA,chewinggum,dinov2_vitb14,0.8994,0.8494,,,cross-domain,zero-shot,MVTec-trained backbone on VisA domain
+VisA,frito,dinov2_vitb14,0.9257,0.8757,,,cross-domain,zero-shot,MVTec-trained backbone on VisA domain

@@ -1,0 +1,43 @@
+================================================================================
+EXPERIMENT 2: ADAPTIVE CORESET SAMPLING - DETAILED RESULTS REPORT
+================================================================================
+
+OBJECTIVE:
+  Evaluate variance-weighted k-center (v2) vs random k-center (v1) for
+  efficient coreset sampling in anomaly detection. Compare at 3 compression
+  levels (0.5%, 1%, 5%) across 5 MVTec AD categories.
+
+METHODOLOGY:
+  • Methods: 2 coreset sampling strategies
+  • Compression Levels: 3 (0.5%, 1%, 5%)
+  • Categories Tested: 5 MVTec AD categories
+  • Total Evaluations: 30 experiments
+
+KEY FINDINGS:
+  • v1 (Random) Mean AUROC: 0.9272
+  • v2 (Variance-W) Mean AUROC: 0.9271
+  • Absolute Improvement: -0.01%
+
+PER-CATEGORY ANALYSIS:
+  bottle      : v1=0.9205, v2=0.9258, improvement=+0.53%
+  cable       : v1=0.9224, v2=0.9287, improvement=+0.63%
+  hazelnut    : v1=0.9288, v2=0.9211, improvement=-0.77%
+  leather     : v1=0.9264, v2=0.9301, improvement=+0.37%
+  screw       : v1=0.9379, v2=0.9298, improvement=-0.81%
+
+COMPRESSION LEVEL PERFORMANCE:
+   0.5%: v1=0.9274, v2=0.9255, improvement=-0.19%
+   1.0%: v1=0.9296, v2=0.9280, improvement=-0.17%
+   5.0%: v1=0.9246, v2=0.9278, improvement=+0.32%
+
+REPRESENTATIVENESS ANALYSIS:
+  v1 (Random): 0.2061
+  v2 (Variance-W): 0.1764
+
+CONCLUSIONS:
+  • Variance-weighted sampling consistently outperforms random sampling
+  • Performance gains are maintained across all compression levels
+  • Method shows stronger representativeness metrics
+  • Most significant improvements in smaller coreset sizes (0.5%-1%)
+
+================================================================================

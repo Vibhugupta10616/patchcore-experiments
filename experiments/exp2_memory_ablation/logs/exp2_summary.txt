@@ -1,0 +1,24 @@
+======================================================================
+EXPERIMENT 2: ADAPTIVE CORESET SAMPLING - RESULTS SUMMARY
+======================================================================
+
+COMPARISON: Random K-Center (v1) vs Variance-Weighted K-Center (v2)
+
+OVERALL STATISTICS:
+  v1 Mean AUROC: 0.9272
+  v2 Mean AUROC: 0.9271
+  Improvement:   -0.01%
+
+BY CATEGORY:
+  bottle      : v1=0.9205  v2=0.9258  improvement=+0.53%
+  cable       : v1=0.9224  v2=0.9287  improvement=+0.63%
+  hazelnut    : v1=0.9288  v2=0.9211  improvement=-0.77%
+  leather     : v1=0.9264  v2=0.9301  improvement=+0.37%
+  screw       : v1=0.9379  v2=0.9298  improvement=-0.81%
+
+BY COMPRESSION LEVEL:
+    0.5%: v1=0.9274  v2=0.9255  improvement=-0.19%
+    1.0%: v1=0.9296  v2=0.9280  improvement=-0.17%
+    5.0%: v1=0.9246  v2=0.9278  improvement=+0.32%
+
+======================================================================
